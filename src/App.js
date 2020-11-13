@@ -4,14 +4,18 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-import { PuppyCardsList } from './PuppyCardsList'
 import { fetchAllPuppies } from './graphQLUtils'
+import { TinderSwipe } from './TinderSwipe'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
     color: '#FFF',
   },
+  header: {
+    marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(6)
+  }
 }))
 
 export default function App() {
@@ -39,14 +43,9 @@ export default function App() {
   return (
     <main className={classes.root}>
       <Container>
-        <h1>Puppy Playdate</h1>
+        <h1 className={classes.header}>Puppy Playdate</h1>
         {puppyData ? (
-          <>
-            <PuppyCardsList
-              puppyData={puppyData}
-              fetchPuppyData={fetchPuppyData}
-            />
-          </>
+          <TinderSwipe puppyData={puppyData} fetchPuppyData={fetchPuppyData} />
         ) : (
           <div className={classes.loadingContainer}>
             <CircularProgress color="inherit" size={60} />

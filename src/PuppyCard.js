@@ -13,11 +13,12 @@ import { updatePuppyMatchedStatus } from './graphQLUtils'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 275,
+    maxWidth: '100%',
     textAlign: 'left',
+    height: theme.spacing(80),
   },
   media: {
-    height: 320,
+    height: theme.spacing(50),
   },
   puppyIdNumber: {
     fontSize: 14,
