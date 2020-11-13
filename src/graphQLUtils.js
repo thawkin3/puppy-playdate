@@ -37,12 +37,8 @@ export function fetchAllPuppies() {
   return fetchGraphQL(fetchAllPuppiesOperationsDoc, 'FetchAllPuppies', {})
 }
 
-
 // Update the puppy matched status
-const updatePuppyMatchedStatusOperationsDoc = (
-  puppyId,
-  newIsMatchedValue
-) => `
+const updatePuppyMatchedStatusOperationsDoc = (puppyId, newIsMatchedValue) => `
   mutation UpdatePuppyMatchedStatus {
     updatePuppy(input: { filter: { id: ["${puppyId}"] }, set: { matched: ${newIsMatchedValue} } }) {
       puppy {

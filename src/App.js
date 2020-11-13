@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     marginTop: theme.spacing(6),
-    marginBottom: theme.spacing(6)
-  }
+    marginBottom: theme.spacing(6),
+  },
 }))
 
 export default function App() {
@@ -29,8 +29,8 @@ export default function App() {
       console.error(errors)
     }
 
-    const result = data.queryPuppy.sort(
-      (puppyA, puppyB) => puppyA.name < puppyB.name ? -1 : 1
+    const result = data.queryPuppy.sort((puppyA, puppyB) =>
+      puppyA.name < puppyB.name ? -1 : 1
     )
 
     setPuppyData(result)

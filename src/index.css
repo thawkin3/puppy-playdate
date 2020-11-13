@@ -18,7 +18,7 @@ html {
 
 body {
   font-size: 100%;
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 0 2rem 0;
 }
 
 * {
@@ -29,9 +29,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
-
 
 .swipe {
   position: absolute;

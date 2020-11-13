@@ -33,7 +33,12 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
   return (
     <div className={classes.cardContainer}>
       {puppyData.map((puppy) => (
-        <TinderCard className={classes.swipeCard} key={puppy.name} onSwipe={(dir) => swiped(dir, puppy.name)} onCardLeftScreen={() => outOfFrame(puppy.name)}>
+        <TinderCard
+          className={classes.swipeCard}
+          key={puppy.name}
+          onSwipe={(dir) => swiped(dir, puppy.name)}
+          onCardLeftScreen={() => outOfFrame(puppy.name)}
+        >
           <PuppyCard puppy={puppy} fetchPuppyData={fetchPuppyData} />
         </TinderCard>
       ))}
