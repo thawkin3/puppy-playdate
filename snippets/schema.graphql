@@ -1,7 +1,9 @@
 type Puppy {
-  id: ID!
-  name: String! @search(by: [fulltext])
-  matched: Boolean! @search
-  profilePic: String!
-  bio: String
+    id: ID!
+    name: String! @search(by: [fulltext])
+    age: Int!
+    matched: Boolean! @search
+    profilePic: String!
+    bio: String
+    interests: [String!]! @search
 }

@@ -12,9 +12,11 @@ mutation AddPuppy {
     puppy {
       id
       name
+      age
       matched
       profilePic
       bio
+      interests
     }
   }
 }

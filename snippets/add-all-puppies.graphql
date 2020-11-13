@@ -2,31 +2,103 @@ mutation AddPuppies {
   addPuppy(
     input: [
       {
-        name: "Spot"
+        name: "Brandi"
+        age: 2,
         matched: false
-        profilePic: "http://img.pokemondb.net/artwork/bulbasaur.jpg"
-        bio: "I love playing fetch and going to long walks on the beach."
+        profilePic: "images/dog1.jpeg"
+        bio: "I love long walks on the beach, especially if there are seagulls we can chase."
+        interests: ["fetch", "walks"]
+      }
+      {
+        name: "Chase"
+        age: 1,
+        matched: false
+        profilePic: "images/dog2.jpg"
+        bio: "I'm just looking for someone to eat with."
+        interests: ["fetch", "walks"]
+      }
+      {
+        name: "Cocoa"
+        age: 4,
+        matched: false
+        profilePic: "images/dog6.jpg"
+        bio: "I love cuddles and naps."
+        interests: ["fetch", "walks"]
+      }
+      {
+        name: "Charlie"
+        age: 5,
+        matched: false
+        profilePic: "images/dog3.jpg"
+        bio: "I'm very active and love to explore. If there's ever a pond around, you can bet I'll be jumping in it."
+        interests: ["fetch", "walks"]
+      }
+      {
+        name: "Emily"
+        age: 0,
+        matched: false
+        profilePic: "images/dog11.jpg"
+        bio: "I love chewing on furniture and pretending I'm tougher than I really am."
+        interests: ["fetch", "walks"]
+      }
+      {
+        name: "Doug"
+        age: 5,
+        matched: false
+        profilePic: "images/dog10.jpg"
+        bio: "If you look bad boys, swipe left because I'm a good boy."
+        interests: ["fetch", "walks"]
+      }
+      {
+        name: "Midnight"
+        age: 6,
+        matched: false
+        profilePic: "images/dog9.jpg"
+        bio: "Winter is my favorite season."
+        interests: ["fetch", "walks"]
       }
       {
         name: "Spike"
+        age: 3,
         matched: false
-        profilePic: "http://img.pokemondb.net/artwork/ivysaur.jpg"
-        bio: "I look scary but I'm actually really lovable."
+        profilePic: "images/dog8.jpg"
+        bio: "Want to play ball?"
+        interests: ["fetch", "walks"]
       }
       {
-        name: "Cheryl"
+        name: "Toby"
+        age: 7,
         matched: false
-        profilePic: "http://img.pokemondb.net/artwork/venusaur.jpg"
-        bio: "I love yapping really loudly at people's heels."
+        profilePic: "images/dog5.jpg"
+        bio: "I may look scary, but I've got a soft side once you get to know me."
+        interests: ["fetch", "walks"]
+      }
+      {
+        name: "Louie"
+        age: 1,
+        matched: false
+        profilePic: "images/dog4.jpg"
+        bio: "I just want to lay on the floor all day."
+        interests: ["fetch", "walks"]
+      }
+      {
+        name: "Trevor"
+        age: 2,
+        matched: false
+        profilePic: "images/dog7.jpg"
+        bio: "Car rides are my favorite."
+        interests: ["fetch", "walks"]
       }
     ]
   ) {
     puppy {
       id
       name
+      age
       matched
       profilePic
       bio
+      interests
     }
   }
 }
