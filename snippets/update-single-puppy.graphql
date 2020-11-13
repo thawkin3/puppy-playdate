@@ -1,0 +1,7 @@
+mutation UpdatePuppy {
+  updatePuppy(input: { filter: { id: ["0x3"] }, set: { matched: true } }) {
+    puppy {
+      name
+    }
+  }
+}

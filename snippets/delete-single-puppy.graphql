@@ -1,0 +1,7 @@
+mutation DeletePuppy {
+  deletePuppy(filter: { id: ["0x3"] }) {
+    puppy {
+      name
+    }
+  }
+}

@@ -1,0 +1,20 @@
+mutation AddPuppy {
+  addPuppy(
+    input: [
+      {
+        name: "Spot"
+        matched: false
+        profilePic: "http://img.pokemondb.net/artwork/bulbasaur.jpg"
+        bio: "I love playing fetch and going to long walks on the beach."
+      }
+    ]
+  ) {
+    puppy {
+      id
+      name
+      matched
+      profilePic
+      bio
+    }
+  }
+}

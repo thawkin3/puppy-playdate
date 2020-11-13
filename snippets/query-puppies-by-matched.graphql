@@ -1,0 +1,9 @@
+query GetAllMatchedPuppies {
+  queryPuppy(filter: { matched: true }) {
+    id
+    name
+    matched
+    profilePic
+    bio
+  }
+}

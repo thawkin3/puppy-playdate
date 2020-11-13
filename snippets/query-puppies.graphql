@@ -1,0 +1,9 @@
+query GetAllPuppies {
+  queryPuppy {
+    id
+    name
+    matched
+    profilePic
+    bio
+  }
+}
