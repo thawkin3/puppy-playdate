@@ -7,9 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #3b4cca;
-  background: #ccc;
-  background: #5db9ff;
+  background: #fe5864;
 }
 
 html {
@@ -30,6 +28,6 @@ code {
     monospace;
 }
 
-#root {
+/* #root {
   overflow: hidden;
-}
+} */

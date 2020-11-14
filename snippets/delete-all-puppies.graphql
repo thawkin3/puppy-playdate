@@ -1,0 +1,7 @@
+mutation DeletePuppy {
+  deletePuppy(filter: {}) {
+    puppy {
+      name
+    }
+  }
+}

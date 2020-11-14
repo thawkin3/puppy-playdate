@@ -17,15 +17,25 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     textAlign: 'left',
     height: theme.spacing(80),
+    boxShadow: 'rgba(50, 50, 50, 0.08) 6px 8px 10px -3px',
+    display: 'flex',
+    flexDirection: 'column',
   },
   media: {
     height: theme.spacing(50),
+  },
+  cardContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    flexGrow: 1,
   },
   bio: {
     marginBottom: theme.spacing(2),
   },
   cardActions: {
     justifyContent: 'space-around',
+    marginBottom: theme.spacing(2),
   },
 }))
 
@@ -47,40 +57,42 @@ export function PuppyCard({ puppy, fetchPuppyData, swipe }) {
   }
 
   return (
-    <Card className={classes.root} variant="outlined">
+    <Card className={classes.root}>
       <CardMedia
         className={classes.media}
         image={`${process.env.PUBLIC_URL}/${puppy.profilePic}`}
         title={puppy.name}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          {puppy.name}, {puppy.age}
-        </Typography>
-        <Typography
-          variant="body1"
-          color="textSecondary"
-          component="p"
-          className={classes.bio}
-        >
-          {puppy.bio}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          <b>Interests:</b> {puppy.interests?.join(', ')}
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.cardActions}>
-        <Tooltip title="No thanks..." aria-label="No thanks..." arrow>
-          <Fab aria-label="No thanks..." color="secondary" onClick={() => swipe('left')}>
-            <CloseIcon />
-          </Fab>
-        </Tooltip>
-        <Tooltip title="Yes!" aria-label="Yes!" arrow>
-          <Fab aria-label="Yes!" color="primary" onClick={() => swipe('right')}>
-            <FavoriteIcon />
-          </Fab>
-        </Tooltip>
-      </CardActions>
+      <div className={classes.cardContent}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {puppy.name}, {puppy.age}
+          </Typography>
+          <Typography
+            variant="body1"
+            color="textSecondary"
+            component="p"
+            className={classes.bio}
+          >
+            {puppy.bio}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            <b>Interests:</b> {puppy.interests?.join(', ')}
+          </Typography>
+        </CardContent>
+        <CardActions className={classes.cardActions}>
+          <Tooltip title="No thanks..." aria-label="No thanks..." arrow>
+            <Fab aria-label="No thanks..." color="secondary" onClick={() => swipe('left')}>
+              <CloseIcon />
+            </Fab>
+          </Tooltip>
+          <Tooltip title="Yes!" aria-label="Yes!" arrow>
+            <Fab aria-label="Yes!" color="primary" onClick={() => swipe('right')}>
+              <FavoriteIcon />
+            </Fab>
+          </Tooltip>
+        </CardActions>
+      </div>
     </Card>
   )
 }

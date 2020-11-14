@@ -7,7 +7,7 @@ mutation AddPuppies {
         matched: false
         profilePic: "images/dog1.jpeg"
         bio: "I love long walks on the beach, especially if there are seagulls we can chase."
-        interests: ["fetch", "walks"]
+        interests: ["fetch", "walks", "terrorizing birds"]
       }
       {
         name: "Chase"
@@ -15,23 +15,23 @@ mutation AddPuppies {
         matched: false
         profilePic: "images/dog2.jpg"
         bio: "I'm just looking for someone to eat with."
-        interests: ["fetch", "walks"]
+        interests: ["eating", "begging"]
       }
       {
         name: "Cocoa"
         age: 4
         matched: false
         profilePic: "images/dog6.jpg"
-        bio: "I love cuddles and naps."
-        interests: ["fetch", "walks"]
+        bio: "I love cuddles and naps. I'd share my pillow with you."
+        interests: ["cuddles", "naps"]
       }
       {
         name: "Charlie"
         age: 5
         matched: false
         profilePic: "images/dog3.jpg"
-        bio: "I'm very active and love to explore. If there's ever a pond around, you can bet I'll be jumping in it."
-        interests: ["fetch", "walks"]
+        bio: "I'm looking for a leash-free relationship. Jumping in lakes and ponds is my favorite."
+        interests: ["swimming", "exploring"]
       }
       {
         name: "Emily"
@@ -39,55 +39,55 @@ mutation AddPuppies {
         matched: false
         profilePic: "images/dog11.jpg"
         bio: "I love chewing on furniture and pretending I'm tougher than I really am."
-        interests: ["fetch", "walks"]
+        interests: ["chewing", "walks", "being held"]
       }
       {
         name: "Doug"
         age: 5
         matched: false
         profilePic: "images/dog10.jpg"
-        bio: "If you look bad boys, swipe left because I'm a good boy."
-        interests: ["fetch", "walks"]
+        bio: "If you like bad boys swipe left because I'm a good boy."
+        interests: ["fetch", "sticks", "chasing things"]
       }
       {
         name: "Midnight"
         age: 6
         matched: false
         profilePic: "images/dog9.jpg"
-        bio: "Winter is my favorite season."
-        interests: ["fetch", "walks"]
+        bio: "I'd let you pee on my fire hydrant."
+        interests: ["walks", "peeing in snow"]
       }
       {
         name: "Spike"
         age: 3
         matched: false
         profilePic: "images/dog8.jpg"
-        bio: "Want to play ball?"
-        interests: ["fetch", "walks"]
+        bio: "Is your tail always wagging or are you just happy to see me? Want to play ball?"
+        interests: ["fetch", "balls", "drooling"]
       }
       {
         name: "Toby"
         age: 7
         matched: false
         profilePic: "images/dog5.jpg"
-        bio: "I may look scary, but I've got a soft side once you get to know me."
-        interests: ["fetch", "walks"]
+        bio: "Hey there, beautiful... looking for an Alpha dog?"
+        interests: ["barking", "chasing people"]
       }
       {
         name: "Louie"
         age: 1
         matched: false
         profilePic: "images/dog4.jpg"
-        bio: "I just want to lay on the floor all day."
-        interests: ["fetch", "walks"]
+        bio: "Roses are grey, violets are grey, everything is grey because I'm a dog."
+        interests: ["breathing", "snoring", "sleeping"]
       }
       {
         name: "Trevor"
         age: 2
         matched: false
         profilePic: "images/dog7.jpg"
-        bio: "Car rides are my favorite."
-        interests: ["fetch", "walks"]
+        bio: "Hey girl, are your paws tired? Because you've been running through my mind all day."
+        interests: ["car rides", "walks"]
       }
     ]
   ) {
