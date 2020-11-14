@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export function PuppyCard({ puppy, fetchPuppyData }) {
+export function PuppyCard({ puppy, fetchPuppyData, swipe }) {
   const classes = useStyles()
 
   const handleMatchedChange = async () => {
@@ -71,12 +71,12 @@ export function PuppyCard({ puppy, fetchPuppyData }) {
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Tooltip title="No thanks..." aria-label="No thanks..." arrow>
-          <Fab aria-label="No thanks..." color="secondary">
+          <Fab aria-label="No thanks..." color="secondary" onClick={() => swipe('left')}>
             <CloseIcon />
           </Fab>
         </Tooltip>
         <Tooltip title="Yes!" aria-label="Yes!" arrow>
-          <Fab aria-label="Yes!" color="primary">
+          <Fab aria-label="Yes!" color="primary" onClick={() => swipe('right')}>
             <FavoriteIcon />
           </Fab>
         </Tooltip>

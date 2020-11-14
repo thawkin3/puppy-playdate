@@ -30,6 +30,6 @@ code {
     monospace;
 }
 
-.swipe {
-  position: absolute;
+#root {
+  overflow: hidden;
 }
