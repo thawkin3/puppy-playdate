@@ -6,7 +6,7 @@ const settings = {
   snapBackDuration: 300,
   maxTilt: 2,
   bouncePower: 0.2,
-  swipeThreshold: 5000,
+  swipeThreshold: 50,
 }
 
 const getElementSize = (element) => {
