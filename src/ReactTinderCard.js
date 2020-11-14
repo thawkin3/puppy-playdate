@@ -31,7 +31,10 @@ const animateOut = async (element, speed, easeIn = false) => {
   const time = diagonal / velocity
   const multiplier = diagonal / velocity
 
-  const translateString = translationString(speed.x * multiplier + startPos.x, -speed.y * multiplier + startPos.y)
+  const translateString = translationString(
+    speed.x * multiplier + startPos.x,
+    -speed.y * multiplier + startPos.y
+  )
   let rotateString = ''
 
   const rotationPower = 200
@@ -45,9 +48,13 @@ const animateOut = async (element, speed, easeIn = false) => {
   if (getRotation(element) === 0) {
     rotateString = rotationString((Math.random() - 0.5) * rotationPower)
   } else if (getRotation(element) > 0) {
-    rotateString = rotationString((Math.random()) * rotationPower / 2 + getRotation(element))
+    rotateString = rotationString(
+      (Math.random() * rotationPower) / 2 + getRotation(element)
+    )
   } else {
-    rotateString = rotationString((Math.random() - 1) * rotationPower / 2 + getRotation(element))
+    rotateString = rotationString(
+      ((Math.random() - 1) * rotationPower) / 2 + getRotation(element)
+    )
   }
 
   element.style.transform = translateString + rotateString
@@ -58,7 +65,10 @@ const animateOut = async (element, speed, easeIn = false) => {
 const animateBack = (element) => {
   element.style.transition = settings.snapBackDuration + 'ms'
   const startingPoint = getTranslate(element)
-  const translation = translationString(startingPoint.x * -settings.bouncePower, startingPoint.y * -settings.bouncePower)
+  const translation = translationString(
+    startingPoint.x * -settings.bouncePower,
+    startingPoint.y * -settings.bouncePower
+  )
   const rotation = rotationString(getRotation(element) * -settings.bouncePower)
   element.style.transform = translation + rotation
 
@@ -73,9 +83,9 @@ const animateBack = (element) => {
 
 const getSwipeDirection = (speed) => {
   if (Math.abs(speed.x) > Math.abs(speed.y)) {
-    return (speed.x > 0) ? 'right' : 'left'
+    return speed.x > 0 ? 'right' : 'left'
   } else {
-    return (speed.y > 0) ? 'up' : 'down'
+    return speed.y > 0 ? 'up' : 'down'
   }
 }
 
@@ -106,7 +116,7 @@ const getTranslate = (element) => {
 const getRotation = (element) => {
   const style = window.getComputedStyle(element)
   const matrix = new WebKitCSSMatrix(style.webkitTransform)
-  const ans = -Math.asin(matrix.m21) / (2 * Math.PI) * 360
+  const ans = (-Math.asin(matrix.m21) / (2 * Math.PI)) * 360
   return ans
 }
 
@@ -129,118 +139,163 @@ const mouseCoordinatesFromEvent = (e) => {
   return { x: e.clientX, y: e.clientY }
 }
 
-export const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, onCardLeftScreen, className, preventSwipe = [] }, perentRef) => {
-  const swipeAlreadyReleased = React.useRef(false)
+export const TinderCard = React.forwardRef(
+  (
+    {
+      flickOnSwipe = true,
+      children,
+      onSwipe,
+      onCardLeftScreen,
+      className,
+      preventSwipe = [],
+    },
+    perentRef
+  ) => {
+    const swipeAlreadyReleased = React.useRef(false)
 
-  let elementGlobal
+    let elementGlobal
 
-  React.useImperativeHandle(perentRef, () => ({
-    async swipe (dir = 'right') {
-      if (onSwipe) onSwipe(dir)
-      const power = 1000
-      const disturbance = (Math.random() - 0.5) * 100
-      if (dir === 'right') {
-        await animateOut(elementGlobal, { x: power, y: disturbance }, true)
-      } else if (dir === 'left') {
-        await animateOut(elementGlobal, { x: -power, y: disturbance }, true)
-      } else if (dir === 'up') {
-        await animateOut(elementGlobal, { x: disturbance, y: power }, true)
-      } else if (dir === 'down') {
-        await animateOut(elementGlobal, { x: disturbance, y: -power }, true)
-      }
-      elementGlobal.style.display = 'none'
-      if (onCardLeftScreen) onCardLeftScreen(dir)
-    }
-  }))
+    React.useImperativeHandle(perentRef, () => ({
+      async swipe(dir = 'right') {
+        if (onSwipe) onSwipe(dir)
+        const power = 1000
+        const disturbance = (Math.random() - 0.5) * 100
+        if (dir === 'right') {
+          await animateOut(elementGlobal, { x: power, y: disturbance }, true)
+        } else if (dir === 'left') {
+          await animateOut(elementGlobal, { x: -power, y: disturbance }, true)
+        } else if (dir === 'up') {
+          await animateOut(elementGlobal, { x: disturbance, y: power }, true)
+        } else if (dir === 'down') {
+          await animateOut(elementGlobal, { x: disturbance, y: -power }, true)
+        }
+        elementGlobal.style.display = 'none'
+        if (onCardLeftScreen) onCardLeftScreen(dir)
+      },
+    }))
 
-  const handleSwipeReleased = React.useCallback(async (element, speed) => {
-    if (swipeAlreadyReleased.current) { return }
-    swipeAlreadyReleased.current = true
-
-    // Check if this is a swipe
-    if (Math.abs(speed.x) > settings.swipeThreshold || Math.abs(speed.y) > settings.swipeThreshold) {
-      const dir = getSwipeDirection(speed)
-
-      if (onSwipe) onSwipe(dir)
-
-      if (flickOnSwipe) {
-        if (!preventSwipe.includes(dir)) {
-          await animateOut(element, speed)
-          element.style.display = 'none'
-          if (onCardLeftScreen) onCardLeftScreen(dir)
+    const handleSwipeReleased = React.useCallback(
+      async (element, speed) => {
+        if (swipeAlreadyReleased.current) {
           return
         }
-      }
-    }
+        swipeAlreadyReleased.current = true
 
-    // Card was not flicked away, animate back to start
-    animateBack(element)
-  }, [swipeAlreadyReleased, flickOnSwipe, onSwipe, onCardLeftScreen, preventSwipe])
+        // Check if this is a swipe
+        if (
+          Math.abs(speed.x) > settings.swipeThreshold ||
+          Math.abs(speed.y) > settings.swipeThreshold
+        ) {
+          const dir = getSwipeDirection(speed)
 
-  const handleSwipeStart = React.useCallback(() => {
-    swipeAlreadyReleased.current = false
-  }, [swipeAlreadyReleased])
+          if (onSwipe) onSwipe(dir)
 
-  const ref = React.useCallback((element) => {
-    if (!element) { return } // necesarry?
-    elementGlobal = element
-    let offset = { x: null, y: null }
-    let speed = { x: 0, y: 0 }
-    let lastLocation = { x: 0, y: 0, time: new Date().getTime() }
-    let mouseIsClicked = false
+          if (flickOnSwipe) {
+            if (!preventSwipe.includes(dir)) {
+              await animateOut(element, speed)
+              element.style.display = 'none'
+              if (onCardLeftScreen) onCardLeftScreen(dir)
+              return
+            }
+          }
+        }
 
-    element.addEventListener(('touchstart'), (ev) => {
-      ev.preventDefault()
-      handleSwipeStart()
-      offset = { x: -touchCoordinatesFromEvent(ev).x, y: -touchCoordinatesFromEvent(ev).y }
-    })
+        // Card was not flicked away, animate back to start
+        animateBack(element)
+      },
+      [
+        swipeAlreadyReleased,
+        flickOnSwipe,
+        onSwipe,
+        onCardLeftScreen,
+        preventSwipe,
+      ]
+    )
 
-    element.addEventListener(('mousedown'), (ev) => {
-      ev.preventDefault()
-      mouseIsClicked = true
-      handleSwipeStart()
-      offset = { x: -mouseCoordinatesFromEvent(ev).x, y: -mouseCoordinatesFromEvent(ev).y }
-    })
+    const handleSwipeStart = React.useCallback(() => {
+      swipeAlreadyReleased.current = false
+    }, [swipeAlreadyReleased])
 
-    element.addEventListener(('touchmove'), (ev) => {
-      ev.preventDefault()
-      const newLocation = dragableTouchmove(touchCoordinatesFromEvent(ev), element, offset, lastLocation)
-      speed = calcSpeed(lastLocation, newLocation)
-      lastLocation = newLocation
-    })
+    const ref = React.useCallback(
+      (element) => {
+        if (!element) {
+          return
+        } // necesarry?
+        elementGlobal = element
+        let offset = { x: null, y: null }
+        let speed = { x: 0, y: 0 }
+        let lastLocation = { x: 0, y: 0, time: new Date().getTime() }
+        let mouseIsClicked = false
 
-    element.addEventListener(('mousemove'), (ev) => {
-      ev.preventDefault()
-      if (mouseIsClicked) {
-        const newLocation = dragableTouchmove(mouseCoordinatesFromEvent(ev), element, offset, lastLocation)
-        speed = calcSpeed(lastLocation, newLocation)
-        lastLocation = newLocation
-      }
-    })
+        element.addEventListener('touchstart', (ev) => {
+          ev.preventDefault()
+          handleSwipeStart()
+          offset = {
+            x: -touchCoordinatesFromEvent(ev).x,
+            y: -touchCoordinatesFromEvent(ev).y,
+          }
+        })
 
-    element.addEventListener(('touchend'), (ev) => {
-      ev.preventDefault()
-      handleSwipeReleased(element, speed)
-    })
+        element.addEventListener('mousedown', (ev) => {
+          ev.preventDefault()
+          mouseIsClicked = true
+          handleSwipeStart()
+          offset = {
+            x: -mouseCoordinatesFromEvent(ev).x,
+            y: -mouseCoordinatesFromEvent(ev).y,
+          }
+        })
 
-    element.addEventListener(('mouseup'), (ev) => {
-      if (mouseIsClicked) {
-        ev.preventDefault()
-        mouseIsClicked = false
-        handleSwipeReleased(element, speed)
-      }
-    })
+        element.addEventListener('touchmove', (ev) => {
+          ev.preventDefault()
+          const newLocation = dragableTouchmove(
+            touchCoordinatesFromEvent(ev),
+            element,
+            offset,
+            lastLocation
+          )
+          speed = calcSpeed(lastLocation, newLocation)
+          lastLocation = newLocation
+        })
 
-    element.addEventListener(('mouseleave'), (ev) => {
-      if (mouseIsClicked) {
-        ev.preventDefault()
-        mouseIsClicked = false
-        handleSwipeReleased(element, speed)
-      }
-    })
-  }, [handleSwipeReleased, handleSwipeStart])
+        element.addEventListener('mousemove', (ev) => {
+          ev.preventDefault()
+          if (mouseIsClicked) {
+            const newLocation = dragableTouchmove(
+              mouseCoordinatesFromEvent(ev),
+              element,
+              offset,
+              lastLocation
+            )
+            speed = calcSpeed(lastLocation, newLocation)
+            lastLocation = newLocation
+          }
+        })
 
-  return (
-    React.createElement('div', { ref, className }, children)
-  )
-})
+        element.addEventListener('touchend', (ev) => {
+          ev.preventDefault()
+          handleSwipeReleased(element, speed)
+        })
+
+        element.addEventListener('mouseup', (ev) => {
+          if (mouseIsClicked) {
+            ev.preventDefault()
+            mouseIsClicked = false
+            handleSwipeReleased(element, speed)
+          }
+        })
+
+        element.addEventListener('mouseleave', (ev) => {
+          if (mouseIsClicked) {
+            ev.preventDefault()
+            mouseIsClicked = false
+            handleSwipeReleased(element, speed)
+          }
+        })
+      },
+      [handleSwipeReleased, handleSwipeStart]
+    )
+
+    return React.createElement('div', { ref, className }, children)
+  }
+)

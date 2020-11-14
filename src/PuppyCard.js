@@ -82,12 +82,20 @@ export function PuppyCard({ puppy, fetchPuppyData, swipe }) {
         </CardContent>
         <CardActions className={classes.cardActions}>
           <Tooltip title="No thanks..." aria-label="No thanks..." arrow>
-            <Fab aria-label="No thanks..." color="secondary" onClick={() => swipe('left')}>
+            <Fab
+              aria-label="No thanks..."
+              color="secondary"
+              onClick={() => swipe('left')}
+            >
               <CloseIcon />
             </Fab>
           </Tooltip>
           <Tooltip title="Yes!" aria-label="Yes!" arrow>
-            <Fab aria-label="Yes!" color="primary" onClick={() => swipe('right')}>
+            <Fab
+              aria-label="Yes!"
+              color="primary"
+              onClick={() => swipe('right')}
+            >
               <FavoriteIcon />
             </Fab>
           </Tooltip>

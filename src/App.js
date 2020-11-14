@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import PetsIcon from '@material-ui/icons/Pets';
+import PetsIcon from '@material-ui/icons/Pets'
 
 import { fetchAllPuppies } from './graphQLUtils'
 import { TinderSwipe } from './TinderSwipe'
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   headerText: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
-  }
+  },
 }))
 
 export default function App() {

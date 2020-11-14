@@ -27,7 +27,13 @@ const alreadyRemoved = []
 export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
   const classes = useStyles()
 
-  const childRefs = useMemo(() => Array(puppyData.length).fill(0).map(i => React.createRef()), [puppyData.length])
+  const childRefs = useMemo(
+    () =>
+      Array(puppyData.length)
+        .fill(0)
+        .map((i) => React.createRef()),
+    [puppyData.length]
+  )
 
   const swiped = (direction, nameToDelete) => {
     console.log(`swiped ${direction} on ${nameToDelete}`)
@@ -39,13 +45,15 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
 
   const swipe = (dir) => {
     console.log('swipe', dir)
-    const cardsLeft = puppyData.filter(puppy => !alreadyRemoved.includes(puppy.id))
+    const cardsLeft = puppyData.filter(
+      (puppy) => !alreadyRemoved.includes(puppy.id)
+    )
     console.log(cardsLeft)
     if (cardsLeft.length) {
       const toBeRemoved = cardsLeft[cardsLeft.length - 1].id // Find the card object to be removed
       console.log(toBeRemoved)
-      
-      const index = puppyData.map(puppy => puppy.id).indexOf(toBeRemoved) // Find the index of which to make the reference to
+
+      const index = puppyData.map((puppy) => puppy.id).indexOf(toBeRemoved) // Find the index of which to make the reference to
       console.log(index)
 
       alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
@@ -65,7 +73,11 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
           onCardLeftScreen={() => outOfFrame(puppy.name)}
           ref={childRefs[index]}
         >
-          <PuppyCard puppy={puppy} fetchPuppyData={fetchPuppyData} swipe={swipe} />
+          <PuppyCard
+            puppy={puppy}
+            fetchPuppyData={fetchPuppyData}
+            swipe={swipe}
+          />
         </TinderCard>
       ))}
     </div>
