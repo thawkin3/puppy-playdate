@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/puppy-playdate/build/static/css/main.1c9a59e7.chunk.css",
-    "main.js": "/puppy-playdate/build/static/js/main.6c7aa4f4.chunk.js",
-    "main.js.map": "/puppy-playdate/build/static/js/main.6c7aa4f4.chunk.js.map",
+    "main.js": "/puppy-playdate/build/static/js/main.7c579962.chunk.js",
+    "main.js.map": "/puppy-playdate/build/static/js/main.7c579962.chunk.js.map",
     "runtime-main.js": "/puppy-playdate/build/static/js/runtime-main.f6392aeb.js",
     "runtime-main.js.map": "/puppy-playdate/build/static/js/runtime-main.f6392aeb.js.map",
-    "static/js/2.fa12fb06.chunk.js": "/puppy-playdate/build/static/js/2.fa12fb06.chunk.js",
-    "static/js/2.fa12fb06.chunk.js.map": "/puppy-playdate/build/static/js/2.fa12fb06.chunk.js.map",
+    "static/js/2.b93f24ed.chunk.js": "/puppy-playdate/build/static/js/2.b93f24ed.chunk.js",
+    "static/js/2.b93f24ed.chunk.js.map": "/puppy-playdate/build/static/js/2.b93f24ed.chunk.js.map",
     "index.html": "/puppy-playdate/build/index.html",
-    "precache-manifest.58020e5951ea1262be428f17d10c0beb.js": "/puppy-playdate/build/precache-manifest.58020e5951ea1262be428f17d10c0beb.js",
+    "precache-manifest.95d0ae2a7c88a116ee88089b4b56ccd0.js": "/puppy-playdate/build/precache-manifest.95d0ae2a7c88a116ee88089b4b56ccd0.js",
     "service-worker.js": "/puppy-playdate/build/service-worker.js",
     "static/css/main.1c9a59e7.chunk.css.map": "/puppy-playdate/build/static/css/main.1c9a59e7.chunk.css.map",
-    "static/js/2.fa12fb06.chunk.js.LICENSE.txt": "/puppy-playdate/build/static/js/2.fa12fb06.chunk.js.LICENSE.txt"
+    "static/js/2.b93f24ed.chunk.js.LICENSE.txt": "/puppy-playdate/build/static/js/2.b93f24ed.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f6392aeb.js",
-    "static/js/2.fa12fb06.chunk.js",
+    "static/js/2.b93f24ed.chunk.js",
     "static/css/main.1c9a59e7.chunk.css",
-    "static/js/main.6c7aa4f4.chunk.js"
+    "static/js/main.7c579962.chunk.js"
   ]
 }
