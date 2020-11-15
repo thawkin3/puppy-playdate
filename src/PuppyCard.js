@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export function PuppyCard({ puppy, fetchPuppyData, swipe }) {
+export function PuppyCard({ puppy, fetchPuppyData }) {
   const classes = useStyles()
 
   const handleMatchedChange = async () => {
