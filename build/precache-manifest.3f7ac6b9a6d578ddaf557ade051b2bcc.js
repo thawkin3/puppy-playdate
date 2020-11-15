@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "05f16e69a133eb23d5646e5f485c5279",
+    "revision": "c4976bed15cc0a4f14dc485dc1a0a1e5",
     "url": "/puppy-playdate/build/index.html"
   },
   {
-    "revision": "bdec128e6eb60d90803b",
+    "revision": "4d741254bbb8fcdc242b",
     "url": "/puppy-playdate/build/static/css/main.1c9a59e7.chunk.css"
   },
   {
-    "revision": "851c93195f1ef3cec9a1",
-    "url": "/puppy-playdate/build/static/js/2.5bec4314.chunk.js"
+    "revision": "b2f68b8197d963fec5b2",
+    "url": "/puppy-playdate/build/static/js/2.fa12fb06.chunk.js"
   },
   {
     "revision": "6472a7d1d95598048b2f7b02095da167",
-    "url": "/puppy-playdate/build/static/js/2.5bec4314.chunk.js.LICENSE.txt"
+    "url": "/puppy-playdate/build/static/js/2.fa12fb06.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "bdec128e6eb60d90803b",
-    "url": "/puppy-playdate/build/static/js/main.66cd3be5.chunk.js"
+    "revision": "4d741254bbb8fcdc242b",
+    "url": "/puppy-playdate/build/static/js/main.6c7aa4f4.chunk.js"
   },
   {
     "revision": "52ad71044295a33c5ddb",
