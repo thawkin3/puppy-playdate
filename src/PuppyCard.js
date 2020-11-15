@@ -33,10 +33,6 @@ const useStyles = makeStyles((theme) => ({
   bio: {
     marginBottom: theme.spacing(2),
   },
-  cardActions: {
-    justifyContent: 'space-around',
-    marginBottom: theme.spacing(2),
-  },
 }))
 
 export function PuppyCard({ puppy, fetchPuppyData, swipe }) {
@@ -80,26 +76,6 @@ export function PuppyCard({ puppy, fetchPuppyData, swipe }) {
             <b>Interests:</b> {puppy.interests?.join(', ')}
           </Typography>
         </CardContent>
-        <CardActions className={classes.cardActions}>
-          <Tooltip title="No thanks..." aria-label="No thanks..." arrow>
-            <Fab
-              aria-label="No thanks..."
-              color="secondary"
-              onClick={() => swipe('left')}
-            >
-              <CloseIcon />
-            </Fab>
-          </Tooltip>
-          <Tooltip title="Yes!" aria-label="Yes!" arrow>
-            <Fab
-              aria-label="Yes!"
-              color="primary"
-              onClick={() => swipe('right')}
-            >
-              <FavoriteIcon />
-            </Fab>
-          </Tooltip>
-        </CardActions>
       </div>
     </Card>
   )

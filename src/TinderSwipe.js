@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { TinderCard } from './ReactTinderCard'
+import TinderCard from 'react-tinder-card'
 
 import { PuppyCard } from './PuppyCard'
+import { SwipeButtons } from './SwipeButtons'
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -80,6 +81,7 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
           />
         </TinderCard>
       ))}
+      <SwipeButtons swipe={swipe} />
     </div>
   )
 }
