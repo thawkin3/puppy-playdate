@@ -1,14 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
-import Tooltip from '@material-ui/core/Tooltip'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import CloseIcon from '@material-ui/icons/Close'
-import Fab from '@material-ui/core/Fab'
 
 import { updatePuppyMatchedStatus } from './graphQLUtils'
 
@@ -23,12 +18,6 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: theme.spacing(50),
-  },
-  cardContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    flexGrow: 1,
   },
   bio: {
     marginBottom: theme.spacing(2),
@@ -59,24 +48,22 @@ export function PuppyCard({ puppy, fetchPuppyData, swipe }) {
         image={`${process.env.PUBLIC_URL}/${puppy.profilePic}`}
         title={puppy.name}
       />
-      <div className={classes.cardContent}>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {puppy.name}, {puppy.age}
-          </Typography>
-          <Typography
-            variant="body1"
-            color="textSecondary"
-            component="p"
-            className={classes.bio}
-          >
-            {puppy.bio}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            <b>Interests:</b> {puppy.interests?.join(', ')}
-          </Typography>
-        </CardContent>
-      </div>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {puppy.name}, {puppy.age}
+        </Typography>
+        <Typography
+          variant="body1"
+          color="textSecondary"
+          component="p"
+          className={classes.bio}
+        >
+          {puppy.bio}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          <b>Interests:</b> {puppy.interests?.join(', ')}
+        </Typography>
+      </CardContent>
     </Card>
   )
 }
