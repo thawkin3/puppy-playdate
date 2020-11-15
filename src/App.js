@@ -6,6 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import PetsIcon from '@material-ui/icons/Pets'
 
 import { fetchAllPuppies } from './graphQLUtils'
+import { WelcomeScreen } from './WelcomeScreen'
 import { TinderSwipe } from './TinderSwipe'
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
   const classes = useStyles()
   const [puppyData, setPuppyData] = React.useState(null)
+  const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(true)
 
   const fetchPuppyData = React.useCallback(async () => {
     const { errors, data } = await fetchAllPuppies()
@@ -53,7 +55,11 @@ export default function App() {
           <span className={classes.headerText}>Puppy Playdate</span>
           <PetsIcon />
         </h1>
-        {puppyData ? (
+        {showWelcomeScreen ? (
+          <WelcomeScreen
+            handleGetStartedClick={() => setShowWelcomeScreen(false)}
+          />
+        ) : puppyData ? (
           <TinderSwipe puppyData={puppyData} fetchPuppyData={fetchPuppyData} />
         ) : (
           <div className={classes.loadingContainer}>
