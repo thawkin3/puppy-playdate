@@ -2,10 +2,12 @@ mutation AddPuppy {
   addPuppy(
     input: [
       {
-        name: "Spot"
+        name: "Brandi"
+        age: 2
         matched: false
-        profilePic: "http://img.pokemondb.net/artwork/bulbasaur.jpg"
-        bio: "I love playing fetch and going to long walks on the beach."
+        profilePic: "images/dog1.jpeg"
+        bio: "I love long walks on the beach, especially if there are seagulls we can chase."
+        interests: ["fetch", "walks", "terrorizing birds"]
       }
     ]
   ) {
