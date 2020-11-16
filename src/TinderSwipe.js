@@ -36,12 +36,13 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
     [puppyData.length]
   )
 
-  const swiped = (direction, nameToDelete) => {
-    console.log(`swiped ${direction} on ${nameToDelete}`)
+  const swiped = (direction, puppy) => {
+    console.log(`swiped ${direction} on ${puppy.name}`)
+    alreadyRemoved.push(puppy.id)
   }
 
-  const outOfFrame = (name) => {
-    console.log(name + ' left the screen!')
+  const outOfFrame = (puppy) => {
+    console.log(puppy.name + ' left the screen!')
   }
 
   const swipe = (dir) => {
@@ -51,16 +52,10 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
     )
     console.log(cardsLeft)
     if (cardsLeft.length) {
-      const toBeRemoved = cardsLeft[cardsLeft.length - 1].id // Find the card object to be removed
-      console.log(toBeRemoved)
-
-      const index = puppyData.map((puppy) => puppy.id).indexOf(toBeRemoved) // Find the index of which to make the reference to
-      console.log(index)
-
-      alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
-      console.log(alreadyRemoved)
-
-      childRefs[index].current.swipe(dir) // Swipe the card!
+      const toBeRemoved = cardsLeft[cardsLeft.length - 1].id
+      const index = puppyData.map((puppy) => puppy.id).indexOf(toBeRemoved)
+      alreadyRemoved.push(toBeRemoved)
+      childRefs[index].current.swipe(dir)
     }
   }
 
@@ -70,15 +65,11 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
         <TinderCard
           className={classes.swipeCard}
           key={puppy.id}
-          onSwipe={(dir) => swiped(dir, puppy.name)}
-          onCardLeftScreen={() => outOfFrame(puppy.name)}
+          onSwipe={(dir) => swiped(dir, puppy)}
+          onCardLeftScreen={() => outOfFrame(puppy)}
           ref={childRefs[index]}
         >
-          <PuppyCard
-            puppy={puppy}
-            fetchPuppyData={fetchPuppyData}
-            swipe={swipe}
-          />
+          <PuppyCard puppy={puppy} fetchPuppyData={fetchPuppyData} />
         </TinderCard>
       ))}
       <SwipeButtons swipe={swipe} />
