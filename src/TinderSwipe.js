@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const alreadyRemoved = []
+const puppyIdsAlreadyRemoved = []
 
 export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
   const classes = useStyles()
@@ -37,25 +37,18 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
   )
 
   const swiped = (direction, puppy) => {
-    console.log(`swiped ${direction} on ${puppy.name}`)
-    alreadyRemoved.push(puppy.id)
-  }
-
-  const outOfFrame = (puppy) => {
-    console.log(puppy.name + ' left the screen!')
+    puppyIdsAlreadyRemoved.push(puppy.id)
   }
 
   const swipe = (dir) => {
-    console.log('swipe', dir)
-    const cardsLeft = puppyData.filter(
-      (puppy) => !alreadyRemoved.includes(puppy.id)
+    const remainingPuppies = puppyData.filter(
+      (puppy) => !puppyIdsAlreadyRemoved.includes(puppy.id)
     )
-    console.log(cardsLeft)
-    if (cardsLeft.length) {
-      const toBeRemoved = cardsLeft[cardsLeft.length - 1].id
-      const index = puppyData.map((puppy) => puppy.id).indexOf(toBeRemoved)
-      alreadyRemoved.push(toBeRemoved)
-      childRefs[index].current.swipe(dir)
+    if (remainingPuppies.length) {
+      const puppyIdToBeRemoved = remainingPuppies[remainingPuppies.length - 1].id
+      const puppyIdToBeRemovedIndex = puppyData.map((puppy) => puppy.id).indexOf(puppyIdToBeRemoved)
+      puppyIdsAlreadyRemoved.push(puppyIdToBeRemoved)
+      childRefs[puppyIdToBeRemovedIndex].current.swipe(dir)
     }
   }
 
@@ -66,13 +59,12 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
           className={classes.swipeCard}
           key={puppy.id}
           onSwipe={(dir) => swiped(dir, puppy)}
-          onCardLeftScreen={() => outOfFrame(puppy)}
           ref={childRefs[index]}
         >
           <PuppyCard puppy={puppy} fetchPuppyData={fetchPuppyData} />
         </TinderCard>
       ))}
-      <SwipeButtons swipe={swipe} />
+      {puppyIdsAlreadyRemoved.length < puppyData.length && (<SwipeButtons swipe={swipe} />)}
     </div>
   )
 }
