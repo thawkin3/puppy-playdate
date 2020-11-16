@@ -1,5 +1,6 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
 import TinderCard from 'react-tinder-card'
 
 import { PuppyCard } from './PuppyCard'
@@ -36,14 +37,19 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
 
   const puppyIdsAlreadyRemoved = useRef([])
 
+  const [swipeCount, setSwipeCount] = useState(0)
+
   const swiped = (direction, puppy) => {
     puppyIdsAlreadyRemoved.current &&
       puppyIdsAlreadyRemoved.current.push(puppy.id)
+    setSwipeCount((swipeCount) => swipeCount + 1)
   }
 
   const swipe = (dir) => {
     const remainingPuppies = puppyData.filter(
-      (puppy) => !puppyIdsAlreadyRemoved.current?.includes(puppy.id)
+      (puppy) =>
+        !puppyIdsAlreadyRemoved.current ||
+        !puppyIdsAlreadyRemoved.current?.includes(puppy.id)
     )
     if (remainingPuppies.length) {
       const puppyIdToBeRemoved =
@@ -55,7 +61,12 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
     }
   }
 
-  return (
+  const resetTinderApp = () => {
+    puppyIdsAlreadyRemoved.current = []
+    setSwipeCount(0)
+  }
+
+  return swipeCount < puppyData.length ? (
     <div className={classes.cardContainer}>
       {puppyData.map((puppy, index) => (
         <TinderCard
@@ -67,10 +78,16 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
           <PuppyCard puppy={puppy} fetchPuppyData={fetchPuppyData} />
         </TinderCard>
       ))}
-      {puppyIdsAlreadyRemoved.current &&
-        puppyIdsAlreadyRemoved.current.length < puppyData.length && (
-          <SwipeButtons swipe={swipe} />
-        )}
+      <SwipeButtons swipe={swipe} />
     </div>
+  ) : (
+    <Button
+      variant="contained"
+      color="primary"
+      className={classes.button}
+      onClick={resetTinderApp}
+    >
+      Start Over
+    </Button>
   )
 }
