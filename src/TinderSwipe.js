@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useRef } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TinderCard from 'react-tinder-card'
 
@@ -23,8 +23,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const puppyIdsAlreadyRemoved = []
-
 export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
   const classes = useStyles()
 
@@ -36,18 +34,23 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
     [puppyData.length]
   )
 
+  const puppyIdsAlreadyRemoved = useRef([])
+
   const swiped = (direction, puppy) => {
-    puppyIdsAlreadyRemoved.push(puppy.id)
+    puppyIdsAlreadyRemoved.current &&
+      puppyIdsAlreadyRemoved.current.push(puppy.id)
   }
 
   const swipe = (dir) => {
     const remainingPuppies = puppyData.filter(
-      (puppy) => !puppyIdsAlreadyRemoved.includes(puppy.id)
+      (puppy) => !puppyIdsAlreadyRemoved.current?.includes(puppy.id)
     )
     if (remainingPuppies.length) {
-      const puppyIdToBeRemoved = remainingPuppies[remainingPuppies.length - 1].id
-      const puppyIdToBeRemovedIndex = puppyData.map((puppy) => puppy.id).indexOf(puppyIdToBeRemoved)
-      puppyIdsAlreadyRemoved.push(puppyIdToBeRemoved)
+      const puppyIdToBeRemoved =
+        remainingPuppies[remainingPuppies.length - 1].id
+      const puppyIdToBeRemovedIndex = puppyData
+        .map((puppy) => puppy.id)
+        .indexOf(puppyIdToBeRemoved)
       childRefs[puppyIdToBeRemovedIndex].current.swipe(dir)
     }
   }
@@ -64,7 +67,10 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
           <PuppyCard puppy={puppy} fetchPuppyData={fetchPuppyData} />
         </TinderCard>
       ))}
-      {puppyIdsAlreadyRemoved.length < puppyData.length && (<SwipeButtons swipe={swipe} />)}
+      {puppyIdsAlreadyRemoved.current &&
+        puppyIdsAlreadyRemoved.current.length < puppyData.length && (
+          <SwipeButtons swipe={swipe} />
+        )}
     </div>
   )
 }
