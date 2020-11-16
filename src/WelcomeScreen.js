@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '50%',
+    width: theme.spacing(50),
+    maxWidth: '100%',
     margin: 'auto',
   },
   button: {
