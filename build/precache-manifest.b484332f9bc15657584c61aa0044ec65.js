@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8917bf5d2b2d7c60014275802c802ce7",
+    "revision": "9667749ba6dc42576c115719dfc98a69",
     "url": "/puppy-playdate/build/index.html"
   },
   {

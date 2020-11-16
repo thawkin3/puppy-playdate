@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/puppy-playdate/build/precache-manifest.3b37cb427cede7355d7424e084ae38b4.js"
+  "/puppy-playdate/build/precache-manifest.b484332f9bc15657584c61aa0044ec65.js"
 );
 
 self.addEventListener('message', (event) => {
