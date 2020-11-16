@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b30d22b9ac10ab3648f247284193581a",
+    "revision": "8917bf5d2b2d7c60014275802c802ce7",
     "url": "/puppy-playdate/build/index.html"
   },
   {
-    "revision": "0f8ebb5a2252afc05fc7",
+    "revision": "ace9613ad252cb463044",
     "url": "/puppy-playdate/build/static/css/main.1c9a59e7.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/puppy-playdate/build/static/js/2.f2c01436.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0f8ebb5a2252afc05fc7",
-    "url": "/puppy-playdate/build/static/js/main.e4f86df3.chunk.js"
+    "revision": "ace9613ad252cb463044",
+    "url": "/puppy-playdate/build/static/js/main.7566d0f0.chunk.js"
   },
   {
     "revision": "52ad71044295a33c5ddb",
