@@ -64,7 +64,9 @@ export default function App() {
         ) : (
           <div className={classes.loadingContainer}>
             <CircularProgress color="inherit" size={60} />
-            <Typography className={classes.loadingText}>Loading</Typography>
+            <Typography className={classes.loadingText}>
+              Fetching Puppies
+            </Typography>
           </div>
         )}
       </Container>

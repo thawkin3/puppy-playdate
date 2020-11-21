@@ -3,7 +3,7 @@ query GetAllPuppies {
     id
     name
     age
-    matched
+    matchedCount
     profilePic
     bio
     interests

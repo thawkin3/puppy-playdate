@@ -5,8 +5,6 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 
-import { updatePuppyMatchedStatus } from './graphQLUtils'
-
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: '100%',
@@ -19,27 +17,20 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: theme.spacing(50),
   },
+  sideBySideContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  previouslyMatched: {
+    fontStyle: 'italic',
+  },
   bio: {
     marginBottom: theme.spacing(2),
   },
 }))
 
-export function PuppyCard({ puppy, fetchPuppyData }) {
+export function PuppyCard({ puppy }) {
   const classes = useStyles()
-
-  const handleMatchedChange = async () => {
-    const { errors } = await updatePuppyMatchedStatus(puppy.id, !puppy.matched)
-
-    if (errors) {
-      console.error(errors)
-    }
-
-    // Re-fetching all the data to make the top-level app aware of the data change.
-    // This was especially important in getting it to remove a puppy from the UI
-    // when the Captured filter was selected and then a previously captured puppy
-    // was toggled to no longer be captured.
-    fetchPuppyData()
-  }
 
   return (
     <Card className={classes.root}>
@@ -49,9 +40,20 @@ export function PuppyCard({ puppy, fetchPuppyData }) {
         title={puppy.name}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          {puppy.name}, {puppy.age}
-        </Typography>
+        <div className={classes.sideBySideContainer}>
+          <Typography gutterBottom variant="h5" component="h2">
+            {puppy.name}, {puppy.age}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            className={classes.previouslyMatched}
+          >
+            Previously matched {puppy.matchedCount}{' '}
+            {puppy.matchedCount === 1 ? 'time' : 'times'}
+          </Typography>
+        </div>
         <Typography
           variant="body1"
           color="textSecondary"

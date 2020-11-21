@@ -4,7 +4,7 @@ mutation AddPuppies {
       {
         name: "Brandi"
         age: 2
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog1.jpeg"
         bio: "I love long walks on the beach, especially if there are seagulls we can chase."
         interests: ["fetch", "walks", "terrorizing birds"]
@@ -12,7 +12,7 @@ mutation AddPuppies {
       {
         name: "Chase"
         age: 1
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog2.jpg"
         bio: "I'm just looking for someone to eat with."
         interests: ["eating", "begging"]
@@ -20,7 +20,7 @@ mutation AddPuppies {
       {
         name: "Cocoa"
         age: 4
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog6.jpg"
         bio: "I love cuddles and naps. I'd share my pillow with you."
         interests: ["cuddles", "naps"]
@@ -28,7 +28,7 @@ mutation AddPuppies {
       {
         name: "Charlie"
         age: 5
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog3.jpg"
         bio: "I'm looking for a leash-free relationship. Jumping in lakes and ponds is my favorite."
         interests: ["swimming", "exploring"]
@@ -36,7 +36,7 @@ mutation AddPuppies {
       {
         name: "Emily"
         age: 0
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog11.jpg"
         bio: "I love chewing on furniture and pretending I'm tougher than I really am."
         interests: ["chewing", "walks", "being held"]
@@ -44,7 +44,7 @@ mutation AddPuppies {
       {
         name: "Doug"
         age: 5
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog10.jpg"
         bio: "If you like bad boys swipe left because I'm a good boy."
         interests: ["fetch", "sticks", "chasing things"]
@@ -52,7 +52,7 @@ mutation AddPuppies {
       {
         name: "Midnight"
         age: 6
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog9.jpg"
         bio: "I'd let you pee on my fire hydrant."
         interests: ["walks", "peeing in snow"]
@@ -60,7 +60,7 @@ mutation AddPuppies {
       {
         name: "Spike"
         age: 3
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog8.jpg"
         bio: "Is your tail always wagging or are you just happy to see me? Want to play ball?"
         interests: ["fetch", "balls", "drooling"]
@@ -68,7 +68,7 @@ mutation AddPuppies {
       {
         name: "Toby"
         age: 7
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog5.jpg"
         bio: "Hey there, beautiful... looking for an Alpha dog?"
         interests: ["barking", "chasing people"]
@@ -76,7 +76,7 @@ mutation AddPuppies {
       {
         name: "Louie"
         age: 1
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog4.jpg"
         bio: "Roses are grey, violets are grey, everything is grey because I'm a dog."
         interests: ["breathing", "snoring", "sleeping"]
@@ -84,7 +84,7 @@ mutation AddPuppies {
       {
         name: "Trevor"
         age: 2
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog7.jpg"
         bio: "Hey girl, are your paws tired? Because you've been running through my mind all day."
         interests: ["car rides", "walks"]
@@ -95,7 +95,7 @@ mutation AddPuppies {
       id
       name
       age
-      matched
+      matchedCount
       profilePic
       bio
       interests

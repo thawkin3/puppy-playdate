@@ -1,5 +1,5 @@
 mutation UpdatePuppy {
-  updatePuppy(input: { filter: { id: ["0x3"] }, set: { matched: true } }) {
+  updatePuppy(input: { filter: { id: ["0x4e21"] }, set: { matchedCount: 1 } }) {
     puppy {
       name
     }

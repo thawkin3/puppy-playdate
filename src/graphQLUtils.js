@@ -25,7 +25,7 @@ const fetchAllPuppiesOperationsDoc = `
       id
       name
       age
-      matched
+      matchedCount
       profilePic
       bio
       interests
@@ -37,15 +37,18 @@ export function fetchAllPuppies() {
   return fetchGraphQL(fetchAllPuppiesOperationsDoc, 'FetchAllPuppies', {})
 }
 
-// Update the puppy matched status
-const updatePuppyMatchedStatusOperationsDoc = (puppyId, newIsMatchedValue) => `
-  mutation UpdatePuppyMatchedStatus {
-    updatePuppy(input: { filter: { id: ["${puppyId}"] }, set: { matched: ${newIsMatchedValue} } }) {
+// Update the puppy matched count
+const updatePuppyMatchedCountOperationsDoc = (
+  puppyId,
+  newMatchedCountValue
+) => `
+  mutation UpdatePuppyMatchedCount {
+    updatePuppy(input: { filter: { id: ["${puppyId}"] }, set: { matchedCount: ${newMatchedCountValue} } }) {
       puppy {
         id
         name
         age
-        matched
+        matchedCount
         profilePic
         bio
         interests
@@ -54,10 +57,10 @@ const updatePuppyMatchedStatusOperationsDoc = (puppyId, newIsMatchedValue) => `
   }
 `
 
-export function updatePuppyMatchedStatus(puppyId, newIsMatchedValue) {
+export function updatePuppyMatchedCount(puppyId, newMatchedCountValue) {
   return fetchGraphQL(
-    updatePuppyMatchedStatusOperationsDoc(puppyId, newIsMatchedValue),
-    'UpdatePuppyMatchedStatus',
+    updatePuppyMatchedCountOperationsDoc(puppyId, newMatchedCountValue),
+    'UpdatePuppyMatchedCount',
     {}
   )
 }

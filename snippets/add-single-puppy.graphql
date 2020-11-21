@@ -4,7 +4,7 @@ mutation AddPuppy {
       {
         name: "Brandi"
         age: 2
-        matched: false
+        matchedCount: 0
         profilePic: "images/dog1.jpeg"
         bio: "I love long walks on the beach, especially if there are seagulls we can chase."
         interests: ["fetch", "walks", "terrorizing birds"]
@@ -15,7 +15,7 @@ mutation AddPuppy {
       id
       name
       age
-      matched
+      matchedCount
       profilePic
       bio
       interests

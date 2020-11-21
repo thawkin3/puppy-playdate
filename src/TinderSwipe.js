@@ -5,6 +5,7 @@ import TinderCard from 'react-tinder-card'
 
 import { PuppyCard } from './PuppyCard'
 import { SwipeButtons } from './SwipeButtons'
+import { updatePuppyMatchedCount } from './graphQLUtils'
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -39,9 +40,25 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
 
   const [swipeCount, setSwipeCount] = useState(0)
 
+  const handleMatchedCountChange = async (puppy) => {
+    const { errors } = await updatePuppyMatchedCount(
+      puppy.id,
+      puppy.matchedCount + 1
+    )
+
+    if (errors) {
+      console.error(errors)
+    }
+  }
+
   const swiped = (direction, puppy) => {
     puppyIdsAlreadyRemoved.current &&
       puppyIdsAlreadyRemoved.current.push(puppy.id)
+
+    if (direction === 'right') {
+      handleMatchedCountChange(puppy)
+    }
+
     setSwipeCount((swipeCount) => swipeCount + 1)
   }
 
@@ -63,6 +80,7 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
 
   const resetTinderApp = () => {
     puppyIdsAlreadyRemoved.current = []
+    fetchPuppyData()
     setSwipeCount(0)
   }
 
@@ -75,7 +93,7 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
           onSwipe={(dir) => swiped(dir, puppy)}
           ref={childRefs[index]}
         >
-          <PuppyCard puppy={puppy} fetchPuppyData={fetchPuppyData} />
+          <PuppyCard puppy={puppy} />
         </TinderCard>
       ))}
       <SwipeButtons swipe={swipe} />

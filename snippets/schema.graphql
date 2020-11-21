@@ -2,7 +2,7 @@ type Puppy {
   id: ID!
   name: String! @search(by: [fulltext])
   age: Int!
-  matched: Boolean! @search
+  matchedCount: Int!
   profilePic: String!
   bio: String
   interests: [String!]! @search
