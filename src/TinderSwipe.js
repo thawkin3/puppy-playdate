@@ -1,10 +1,10 @@
 import React, { useMemo, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import TinderCard from 'react-tinder-card'
 
 import { PuppyCard } from './PuppyCard'
 import { SwipeButtons } from './SwipeButtons'
+import { ResultsScreen } from './ResultsScreen'
 import { updatePuppyMatchedCount } from './graphQLUtils'
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +39,7 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
   const puppyIdsAlreadyRemoved = useRef([])
 
   const [swipeCount, setSwipeCount] = useState(0)
+  const [likedPuppies, setLikedPuppies] = useState([])
 
   const handleMatchedCountChange = async (puppy) => {
     const { errors } = await updatePuppyMatchedCount(
@@ -56,6 +57,7 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
       puppyIdsAlreadyRemoved.current.push(puppy.id)
 
     if (direction === 'right') {
+      setLikedPuppies([...likedPuppies, puppy])
       handleMatchedCountChange(puppy)
     }
 
@@ -82,6 +84,7 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
     puppyIdsAlreadyRemoved.current = []
     fetchPuppyData()
     setSwipeCount(0)
+    setLikedPuppies([])
   }
 
   return swipeCount < puppyData.length ? (
@@ -99,13 +102,9 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
       <SwipeButtons swipe={swipe} />
     </div>
   ) : (
-    <Button
-      variant="contained"
-      color="primary"
-      className={classes.button}
-      onClick={resetTinderApp}
-    >
-      Start Over
-    </Button>
+    <ResultsScreen
+      likedPuppies={likedPuppies}
+      resetTinderApp={resetTinderApp}
+    />
   )
 }
