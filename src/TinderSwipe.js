@@ -8,7 +8,7 @@ import { SwipeButtons } from './SwipeButtons'
 import { ResultsScreen } from './ResultsScreen'
 
 const UPDATE_PUPPY_MATCHED_COUNT = gql`
-  mutation updatePuppy($id: ID!, $matchedCount: Int!) {
+  mutation UpdatePuppyMatchedCount($id: ID!, $matchedCount: Int!) {
     updatePuppy(
       input: { filter: { id: [$id] }, set: { matchedCount: $matchedCount } }
     ) {

@@ -1,4 +1,4 @@
-mutation DeletePuppy {
+mutation DeleteAllPuppies {
   deletePuppy(filter: {}) {
     puppy {
       name
