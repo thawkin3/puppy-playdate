@@ -4,10 +4,24 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import PetsIcon from '@material-ui/icons/Pets'
+import { useQuery, gql } from '@apollo/client'
 
-import { fetchAllPuppies } from './graphQLUtils'
 import { WelcomeScreen } from './WelcomeScreen'
 import { TinderSwipe } from './TinderSwipe'
+
+const FETCH_ALL_PUPPIES = gql`
+  query FetchAllPuppies {
+    queryPuppy {
+      id
+      name
+      age
+      matchedCount
+      profilePic
+      bio
+      interests
+    }
+  }
+`
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,26 +40,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function App() {
   const classes = useStyles()
-  const [puppyData, setPuppyData] = React.useState(null)
   const [showWelcomeScreen, setShowWelcomeScreen] = React.useState(true)
+  const { data, refetch } = useQuery(FETCH_ALL_PUPPIES)
 
-  const fetchPuppyData = React.useCallback(async () => {
-    const { errors, data } = await fetchAllPuppies()
-
-    if (errors) {
-      console.error(errors)
-    }
-
-    const result = data.queryPuppy.sort((puppyA, puppyB) =>
+  const puppyData =
+    data &&
+    [...data.queryPuppy].sort((puppyA, puppyB) =>
       puppyA.name > puppyB.name ? -1 : 1
     )
-
-    setPuppyData(result)
-  }, [])
-
-  React.useEffect(() => {
-    fetchPuppyData()
-  }, [fetchPuppyData])
 
   return (
     <main className={classes.root}>
@@ -60,7 +62,7 @@ export default function App() {
             handleGetStartedClick={() => setShowWelcomeScreen(false)}
           />
         ) : puppyData ? (
-          <TinderSwipe puppyData={puppyData} fetchPuppyData={fetchPuppyData} />
+          <TinderSwipe puppyData={puppyData} fetchPuppyData={refetch} />
         ) : (
           <div className={classes.loadingContainer}>
             <CircularProgress color="inherit" size={60} />

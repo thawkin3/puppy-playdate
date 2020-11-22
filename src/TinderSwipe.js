@@ -1,11 +1,24 @@
 import React, { useMemo, useRef, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TinderCard from 'react-tinder-card'
+import { gql, useMutation } from '@apollo/client'
 
 import { PuppyCard } from './PuppyCard'
 import { SwipeButtons } from './SwipeButtons'
 import { ResultsScreen } from './ResultsScreen'
-import { updatePuppyMatchedCount } from './graphQLUtils'
+
+const UPDATE_PUPPY_MATCHED_COUNT = gql`
+  mutation updatePuppy($id: ID!, $matchedCount: Int!) {
+    updatePuppy(
+      input: { filter: { id: [$id] }, set: { matchedCount: $matchedCount } }
+    ) {
+      puppy {
+        id
+        matchedCount
+      }
+    }
+  }
+`
 
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
@@ -41,16 +54,7 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
   const [swipeCount, setSwipeCount] = useState(0)
   const [likedPuppies, setLikedPuppies] = useState([])
 
-  const handleMatchedCountChange = async (puppy) => {
-    const { errors } = await updatePuppyMatchedCount(
-      puppy.id,
-      puppy.matchedCount + 1
-    )
-
-    if (errors) {
-      console.error(errors)
-    }
-  }
+  const [updatePuppy] = useMutation(UPDATE_PUPPY_MATCHED_COUNT)
 
   const swiped = (direction, puppy) => {
     puppyIdsAlreadyRemoved.current &&
@@ -58,7 +62,13 @@ export const TinderSwipe = ({ puppyData, fetchPuppyData }) => {
 
     if (direction === 'right') {
       setLikedPuppies([...likedPuppies, puppy])
-      handleMatchedCountChange(puppy)
+
+      updatePuppy({
+        variables: {
+          id: puppy.id,
+          matchedCount: puppy.matchedCount + 1,
+        },
+      })
     }
 
     setSwipeCount((swipeCount) => swipeCount + 1)
